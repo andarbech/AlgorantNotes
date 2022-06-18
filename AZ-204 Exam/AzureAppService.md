@@ -27,6 +27,7 @@ java, Ruby, Node.js, PHP or Pytho. Apps run and scale in Windows and Linux envir
         * The pricing tier of an App determines what features yu get and how much you pay for the plan.
             * **Shared compute:** both **Free** and **Shared**  share the resource pools
             * **Dedicated Computed:** the **Basic, Standar, Premium, PremiumV2** and **PremiumV3** tiers run App on dedicated Azure VMs.
-
- 
-
+# Deplo to App Service
+- Azure soport automated deployment directly from several sources:
+    * **Azure DevOps:** you can can push your code to Azure DevOps, build in the cloud, run the test, genreta release from the code and finally, puesh your code to an Azure Web App.
+    * **GitHub:**  Azure support automated 
