@@ -27,7 +27,18 @@ java, Ruby, Node.js, PHP or Pytho. Apps run and scale in Windows and Linux envir
         * The pricing tier of an App determines what features yu get and how much you pay for the plan.
             * **Shared compute:** both **Free** and **Shared**  share the resource pools
             * **Dedicated Computed:** the **Basic, Standar, Premium, PremiumV2** and **PremiumV3** tiers run App on dedicated Azure VMs.
-# Deplo to App Service
+# Deploy to App Service
 - Azure soport automated deployment directly from several sources:
     * **Azure DevOps:** you can can push your code to Azure DevOps, build in the cloud, run the test, genreta release from the code and finally, puesh your code to an Azure Web App.
     * **GitHub:**  Azure support automated 
+    * **Bitbucket:** you can configure and automated deployment  with Bitbucket.
+- There are few options that can use to manually push your code to Azure:
+    * **Git:** App Service web apps feature a Git URL tat you can add as a remote repository. Pushing to the remote repository will deploy your app.
+    * **CLI:** ```webapp up``` is a feature of the ```az``` command-line inferfase  that packages  your app and deploys it. Unlike other  deployment methods ``az webapp up `` can create a new Appservice  web app for if you haven't alrady created one.
+    * **ZIP Deploy:**  Use ```curl``or a similar HTTP utility to send a ZIP of your aplication files to App service
+    * **FTP/S:** FTP or FTPS is a traditional way of pushing your code to manuy hosting enviroments, Including App Service.
+- Whennever possible, use deployment slots when deploying a new production build. When using a  Standar App service Plan Tier or better, you can deploy your app to a staging enviroment and then swap your staging and production slots.
+# Authentication and authorization in App Service.
+- Azure App service provides built-in auth support. so youy can sign in users and acces data by writting minimal or no code in your web app, API, and mobile back end, and also Azure Functions.
+- Many frameworks are bundled with security features, and you can use them if you like. If you need more flexibility than App service provide, you can also write your own utilities.
+
