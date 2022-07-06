@@ -41,4 +41,28 @@ java, Ruby, Node.js, PHP or Pytho. Apps run and scale in Windows and Linux envir
 # Authentication and authorization in App Service.
 - Azure App service provides built-in auth support. so youy can sign in users and acces data by writting minimal or no code in your web app, API, and mobile back end, and also Azure Functions.
 - Many frameworks are bundled with security features, and you can use them if you like. If you need more flexibility than App service provide, you can also write your own utilities.
-
+- Azure App Service allows you to integrate a variety of auth capabilities into your web app or API without implementing them yourself.
+- App Service uses federated identity, in which a third-party identity provider manages the user identities and authentication flow for you. The following identity providers are available by default:
+    * Microsoft Identity Platform [web](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad)
+    * Facebook [web](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-facebook)
+    * Google [web](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-google)
+    * Twitter [web](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-twitter)
+    * Any Open Connect provider [web](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-openid-connect)
+## How it works
+- The authentication and authorization module runs in the same sandbox as your application. When it's enable incoming HTTP rquest passes through if before being handled by your aplication code. Services>
+    * Authenticates users with the specified provider
+    * Validates, stores, and refresh tokens
+    * Injects indetity information into the request headers
+## Auth flow
+- **without provider SDK:** The App delegate federated sign-in to App service. This is typically the cxases with the browser app, which can present the provider's login page to the user. The server code manages the sing-in process, so it is called server-directed flow or server flow.
+- **with provider SDK:** The app signs users in to the provider manually and then submitsthe authentication token to App Services for validation. This is typically the case with browser-less apps, which can't present  the provider's sing-in page to the user. The aplicatin code manages the sing-in process, so it is also called __client-directed flow__ or __client flow__ . this applies to REST API's, Azure Funtions, JavaScript browser clients, and native mobile app. 
+# Authorization behavior
+- **Allow unauthenticated requests:** This option defers authorization of unauthenticated traffic to your application code. For authenticated requests, App Service also passes along authentication information in the HTTP headers.
+- **Require authentication:** This option will reject any unauthenticated traffic to your application. This rejection can be a redirect action to one of the configured identity providers. In these cases, a browser client is redirected to ```/.auth/login/<provider> ```for the provider you choose. If the anonymous request comes from a native mobile app, the returned response is an __HTTP 401 Unauthorized__
+# Multi-tenant App Service networking features
+- inbound feature: App-assigned address, Access restrictions, Service endpoints, Privates endpoints
+- outbound feature: Hybrid Connections, Gateway-required virtual network integration, Virtual network integration.
+- Examples:
+    * Support IP-based SSL needs for your app	==>  App-assigned address
+    * Support unshared dedicated inbound address for your app ==>	App-assigned address
+    * Restrict access to your app from a set of well-defined addresses ==>	Access restrictions
